@@ -99,10 +99,10 @@ export default function AdminPanelView({
       >
 
         <Typography variant="h4" component="h2" color="black" align="center">
-          Configure Faucet Deployment
+          Configure Escrow Deposit
         </Typography>
         <Typography color="black" align="center">
-          A Short Demo of a Rain Protocol ERC20 Faucet
+          A Short Demo of Rain Protocol Escrow Usage
         </Typography>
 
         <Typography color="black" align="center">
