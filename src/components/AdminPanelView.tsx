@@ -26,8 +26,7 @@ ChartJS.register(
   Legend
 );
 
-// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoe-voucher.jpg'
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg';
+const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
 
 type adminPanelProps = {
   adminConfigPage: number
@@ -106,7 +105,7 @@ export default function AdminPanelView({
         </Typography>
 
         <Typography color="black" align="center">
-          <a href="https://rain-shoe-sale.unegma.work" target="_blank">These can be used as 'Reserve Tokens' here</a>
+          This demo can be used for distributing extra tokens to those who participated in a <a href="https://rain-shoe-sale.unegma.work" target="_blank">Rain Sale such as this one</a>
         </Typography>
 
         <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
