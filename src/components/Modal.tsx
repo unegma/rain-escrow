@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoes.jpg'
+// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg'
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -17,8 +17,21 @@ const style = {
   p: 4,
 };
 
-export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable, reserveSymbol, redeemableSymbol, consoleData, consoleColor}:
-  {modalOpen: boolean, setModalOpen: any, initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string, staticReservePriceOfRedeemable: any, reserveSymbol: string, redeemableSymbol: string, consoleData: string, consoleColor: string})
+type modalProps = {
+  modalOpen: boolean, setModalOpen: any, reserveSymbol: string, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
+  // initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string,
+  // staticReservePriceOfRedeemable: any,  redeemableSymbol: string, consoleData: string,
+  initiateClaim: any,
+  consoleData: string,
+  consoleColor: string
+}
+
+export default function Modal({
+    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock, tokenAddress,
+    // initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable,
+    // redeemableSymbol, consoleData, consoleColor}
+    initiateClaim, consoleData, consoleColor
+  } : modalProps )
 {
 
 
@@ -38,7 +51,7 @@ export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock,
 
 
   const data = {
-    labels: [`Tx1: Approve ${staticReservePriceOfRedeemable}${reserveSymbol}`, 'Tx2: Buy'],
+    labels: [`Tx1: Claim ${reserveInitialSupply} ${reserveSymbol}`],
     datasets: [
       {
         label: '',
@@ -47,7 +60,7 @@ export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock,
       },
       {
         label: '',
-        data: [0.00927434, 0.00985916], // todo base it on dynamic matic costs
+        data: [0.00927434], // todo base it on dynamic matic costs
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
@@ -66,19 +79,21 @@ export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock,
         aria-describedby="modal-modal-description"
       >
         <Box component="div" sx={style}>
-          <img className="modalImage" src={displayedImage} alt="#" /><br/>
+          {/*<img className="modalImage" src={displayedImage} alt="#" /><br/>*/}
 
           {/*todo create graph of transaction costs*/}
 
           <br/>
 
-          { !staticReservePriceOfRedeemable.includes('e') && (
+          {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
             <Bar options={options} data={data} />
-          )}
+          {/*)}*/}
 
           <br/>
 
-          <Typography className="modalText">An {redeemableSymbol} will be exchangeable for a real life Shoe!</Typography><br/>
+          <Typography className="modalText">These {reserveSymbol} can be used in the <a href="https://rain-shoe-sale.unegma.work" target="_blank">Rain Shoe Sale</a> example!
+            Use: {tokenAddress} as the Reserve Token, and then Users can use {reserveSymbol} to buy Shoe Vouchers.
+          </Typography><br/>
 
           { consoleColor === 'red' && (
             <Typography className="modalTextRed">{consoleData}</Typography>
@@ -93,12 +108,12 @@ export default function Modal({modalOpen, setModalOpen, initiateBuy, buttonLock,
           <div className="buttons-box">
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
 
-            { !staticReservePriceOfRedeemable.includes('e') && (
-              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateBuy}>Buy A Shoe ({staticReservePriceOfRedeemable}{reserveSymbol})</Button>
-            )}
-            { staticReservePriceOfRedeemable.includes('e')  && (
-              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>
-            )}
+            {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
+              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveInitialSupply} {reserveSymbol}!</Button>
+            {/*)}*/}
+            {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
+            {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
+            {/*)}*/}
 
           </div>
 

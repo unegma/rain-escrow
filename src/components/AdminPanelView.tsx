@@ -26,21 +26,25 @@ ChartJS.register(
   Legend
 );
 
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoe-voucher.jpg'
+// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-shoe-sale.unegma.work/shoe-voucher.jpg'
+const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg';
 
-type adminPanelProps = { adminConfigPage: number, reserveTokenAddress: string,
-  handleChangeReserveTokenAddress: any, staticReservePriceOfRedeemable: any,
-  handleChangeStaticReservePriceOfRedeemable: any, saleTimeoutInBlocks: any, handleChangeSaleTimeout: any,
-  resetToDefault: any, setAdminConfigPage: any, redeemableName: any, handleChangeRedeemableName: any,
-  redeemableSymbol: any, handleChangeRedeemableSymbol: any, redeemableInitialSupply: any,
-  handleChangeRedeemableInitialSupply: any, buttonLock: any, deploySale: any
+type adminPanelProps = {
+  adminConfigPage: number
+  reserveName: string, handleChangeReserveName: any,
+  reserveSymbol: string, handleChangeReserveSymbol: any,
+  reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
+  resetToDefault: any, setAdminConfigPage: any,
+  buttonLock: any, deployToken: any
 }
 
 export default function AdminPanelView({
-    adminConfigPage, reserveTokenAddress, handleChangeReserveTokenAddress, staticReservePriceOfRedeemable,
-    handleChangeStaticReservePriceOfRedeemable, saleTimeoutInBlocks, handleChangeSaleTimeout, resetToDefault,
-    setAdminConfigPage, redeemableName, handleChangeRedeemableName, redeemableSymbol, handleChangeRedeemableSymbol,
-    redeemableInitialSupply, handleChangeRedeemableInitialSupply, buttonLock, deploySale
+  adminConfigPage,
+  reserveName, handleChangeReserveName,
+  reserveSymbol, handleChangeReserveSymbol,
+  reserveInitialSupply, handleChangeReserveInitialSupply,
+  resetToDefault, setAdminConfigPage,
+  buttonLock, deployToken
   } : adminPanelProps)
 {
 
@@ -60,7 +64,7 @@ export default function AdminPanelView({
   };
 
   const data = {
-    labels: ['Tx1: Deploy Sale', 'Tx2: Start Sale'],
+    labels: ['Tx1: Deploy Token'],
     datasets: [
       {
         label: '',
@@ -69,7 +73,7 @@ export default function AdminPanelView({
       },
       {
         label: '',
-        data: [0.040, 0.00125], // todo base it on dynamic matic costs
+        data: [0.01268265], // todo base it on dynamic matic costs
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
@@ -95,46 +99,49 @@ export default function AdminPanelView({
       >
 
         <Typography variant="h4" component="h2" color="black" align="center">
-          Configure Voucher Sale
+          Configure Faucet Deployment
         </Typography>
         <Typography color="black" align="center">
-          A Proof of Concept for demoing a Rain Protocol Sale
+          A Short Demo of a Rain Protocol ERC20 Faucet
         </Typography>
 
-        <img hidden={!(adminConfigPage !== 2)} className="mainImage" src={displayedImage} alt="#" />
+        <Typography color="black" align="center">
+          <a href="https://rain-shoe-sale.unegma.work" target="_blank">These can be used as 'Reserve Tokens' here</a>
+        </Typography>
+
+        <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
 
         { adminConfigPage === 0 && (
           <>
-
             <Typography variant="h5" component="h3" color="black">
-              (Page 1/3)
+              (Page 1/2)
             </Typography>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">The Token (e.g. USDC) for buying Vouchers</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Name</InputLabel>
               <Input
                 id="component-helper"
-                value={reserveTokenAddress}
-                onChange={handleChangeReserveTokenAddress}
+                value={reserveName}
+                onChange={handleChangeReserveName}
+              />
+            </FormControl>
+
+
+            <FormControl variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Symbol</InputLabel>
+              <Input
+                id="component-helper"
+                value={reserveSymbol}
+                onChange={handleChangeReserveSymbol}
               />
             </FormControl>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">The Price (in USDC) of a Voucher</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Amount a Faucet User will Receive</InputLabel>
               <Input
                 id="component-helper"
-                value={staticReservePriceOfRedeemable}
-                onChange={handleChangeStaticReservePriceOfRedeemable}
-              />
-            </FormControl>
-
-            {/*todo add some validation for max*/}
-            <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Duration (Matic Mumbai: 600 blocks is 60mins)</InputLabel>
-              <Input
-                id="component-helper"
-                value={saleTimeoutInBlocks}
-                onChange={handleChangeSaleTimeout}
+                value={reserveInitialSupply}
+                onChange={handleChangeReserveInitialSupply}
               />
             </FormControl>
 
@@ -147,51 +154,10 @@ export default function AdminPanelView({
 
         { adminConfigPage === 1 && (
           <>
-            <Typography variant="h5" component="h3" color="black">
-              (Page 2/3)
-            </Typography>
-
-            <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Shoe Collection Name</InputLabel>
-              <Input
-                id="component-helper"
-                value={redeemableName}
-                onChange={handleChangeRedeemableName}
-              />
-            </FormControl>
-
-
-            <FormControl disabled variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Voucher Symbol</InputLabel>
-              <Input
-                id="component-helper"
-                value={redeemableSymbol}
-                onChange={handleChangeRedeemableSymbol}
-              />
-            </FormControl>
-
-            <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Amount for Sale (1 per User)</InputLabel>
-              <Input
-                id="component-helper"
-                value={redeemableInitialSupply}
-                onChange={handleChangeRedeemableInitialSupply}
-              />
-            </FormControl>
-
-            <div className="buttons-box">
-              <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>
-              <Button className="fifty-percent-button" variant="contained" onClick={() => {setAdminConfigPage(adminConfigPage+1)}}>Next</Button>
-            </div>
-          </>
-        )}
-
-        { adminConfigPage === 2 && (
-          <>
             <Bar options={options} data={data} />;
 
             <Typography variant="h5" component="h3" color="black">
-              (Page 3/3)
+              (Page 2/2)
             </Typography>
 
             <Typography color="red">
@@ -199,17 +165,17 @@ export default function AdminPanelView({
             </Typography>
 
             <Typography color="black">
-              Ratios and costs based on tests taken around the following time: 2022-05-30T15:32:44Z
+              Ratios and costs based on tests taken around the following time: 2022-06-29T05:50:00Z
             </Typography>
 
 
             <Typography color="black">
-              Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails. If Tx2 (Start Sale) fails, you can call this manually on the contract instead of re-deploying the Sale.
+              Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails.
             </Typography>
 
             <div className="buttons-box">
               <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>
-              <Button className="fifty-percent-button" disabled={buttonLock} variant="contained" onClick={() => {deploySale()}}>Deploy</Button>
+              <Button className="fifty-percent-button" disabled={buttonLock} variant="contained" onClick={() => {deployToken()}}>Deploy</Button>
             </div>
           </>
         )}

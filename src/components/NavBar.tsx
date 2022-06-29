@@ -10,7 +10,7 @@ export default function NavBar({string, stringRight}: {string?: string, stringRi
       <AppBar position="fixed" color="transparent">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {!string ? 'Rain Protocol Sale' : string}
+            {!string ? 'Rain Protocol ERC20 Faucet' : string}
           </Typography>
           <Typography className="right" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {!stringRight ? '' : stringRight}
