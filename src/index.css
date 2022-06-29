@@ -146,3 +146,9 @@ canvas {
 canvas:hover {
   cursor: pointer;
 }
+
+.mainImage {
+  max-width: 20vw;
+  height: auto;
+  align-self: center;
+}
