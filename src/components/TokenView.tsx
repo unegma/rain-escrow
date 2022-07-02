@@ -26,7 +26,7 @@ export default function TokenView({
 
   return (
     <>
-      {/*<NavBar string={`${reserveName} (${reserveSymbol}) Faucet!`} stringRight={`Click the Vault!`} />*/}
+      <NavBar string={`Claim Your Tokens!`} stringRight={`Click the Vault!`} />
       <div className="canvasContainer">
         {/*<Modal*/}
         {/*  modalOpen={modalOpen}*/}
