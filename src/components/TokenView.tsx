@@ -7,15 +7,18 @@ import Faucet from "./Faucet";
 const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg';
 
 type tokenViewProps = {
-  reserveName: string, reserveSymbol: string, modalOpen: any, setModalOpen: any, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
+  // reserveName: string, reserveSymbol: string, modalOpen: any,
+  setModalOpen: any,  buttonLock: any, tokenAddress: string,
+  // reserveInitialSupply: any,
   // redeemableName: any, redeemableSymbol: any, modalOpen: any, setModalOpen: any, initiateBuy: any, buttonLock: any,
   // redeemableTokenAddress: any, staticReservePriceOfRedeemable: any, reserveSymbol: any, consoleData: any,
-  consoleColor: any, consoleData: any, initiateClaim: any
+  // consoleColor: any, consoleData: any, initiateClaim: any
 }
 
 export default function TokenView({
-    reserveName, reserveSymbol, modalOpen, setModalOpen, reserveInitialSupply, buttonLock, tokenAddress,
-    consoleData, consoleColor, initiateClaim
+    // reserveName, reserveSymbol, modalOpen, reserveInitialSupply,
+    setModalOpen, buttonLock, tokenAddress,
+    // consoleData, consoleColor, initiateClaim
     // initiateBuy, buttonLock, tokenAddress,
     // staticReservePriceOfRedeemable, reserveSymbol, consoleData, consoleColor, redeemableInitialSupply
   }: tokenViewProps )
@@ -23,23 +26,23 @@ export default function TokenView({
 
   return (
     <>
-      <NavBar string={`${reserveName} (${reserveSymbol}) Faucet!`} stringRight={`Click the Faucet!`} />
+      {/*<NavBar string={`${reserveName} (${reserveSymbol}) Faucet!`} stringRight={`Click the Faucet!`} />*/}
       <div className="canvasContainer">
-        <Modal
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          reserveSymbol={reserveSymbol}
-          reserveInitialSupply={reserveInitialSupply}
-          // initiateBuy={initiateBuy}
-          buttonLock={buttonLock}
-          // redeemableTokenAddress={redeemableTokenAddress}
-          // staticReservePriceOfRedeemable={staticReservePriceOfRedeemable}
-          // redeemableSymbol={redeemableSymbol}
-          consoleData={consoleData}
-          consoleColor={consoleColor}
-          initiateClaim={initiateClaim}
-          tokenAddress={tokenAddress}
-        />
+        {/*<Modal*/}
+        {/*  modalOpen={modalOpen}*/}
+        {/*  setModalOpen={setModalOpen}*/}
+        {/*  reserveSymbol={reserveSymbol}*/}
+        {/*  reserveInitialSupply={reserveInitialSupply}*/}
+        {/*  // initiateBuy={initiateBuy}*/}
+        {/*  buttonLock={buttonLock}*/}
+        {/*  // redeemableTokenAddress={redeemableTokenAddress}*/}
+        {/*  // staticReservePriceOfRedeemable={staticReservePriceOfRedeemable}*/}
+        {/*  // redeemableSymbol={redeemableSymbol}*/}
+        {/*  consoleData={consoleData}*/}
+        {/*  consoleColor={consoleColor}*/}
+        {/*  initiateClaim={initiateClaim}*/}
+        {/*  tokenAddress={tokenAddress}*/}
+        {/*/>*/}
 
         {/*<Canvas onClick={() => {setModalOpen(!modalOpen)}} shadows dpr={[1,2 ]} camera={{ position: [0, 0, 1.1], fov: 50 }}>*/}
         {/*  <ambientLight intensity={2} />*/}
@@ -55,7 +58,7 @@ export default function TokenView({
         {/*  <OrbitControls autoRotate autoRotateSpeed={1} />*/}
         {/*</Canvas>*/}
 
-        <img onClick={() => {setModalOpen(!modalOpen)}} className="faucetImage" src={displayedImage} alt="#" /><br/>
+        {/*<img onClick={() => {setModalOpen(!modalOpen)}} className="faucetImage" src={displayedImage} alt="#" /><br/>*/}
 
 
       </div>

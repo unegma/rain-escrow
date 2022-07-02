@@ -29,21 +29,21 @@ ChartJS.register(
 const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
 
 type adminPanelProps = {
-  adminConfigPage: number
-  reserveName: string, handleChangeReserveName: any,
-  reserveSymbol: string, handleChangeReserveSymbol: any,
-  reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
-  resetToDefault: any, setAdminConfigPage: any,
-  buttonLock: any, deployToken: any
+  adminConfigPage: number, setAdminConfigPage: any, resetToDefault: any
+  // reserveName: string, handleChangeReserveName: any,
+  // reserveSymbol: string, handleChangeReserveSymbol: any,
+  // reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
+  // , setAdminConfigPage: any,
+  buttonLock: any, deploy: any
 }
 
 export default function AdminPanelView({
-  adminConfigPage,
-  reserveName, handleChangeReserveName,
-  reserveSymbol, handleChangeReserveSymbol,
-  reserveInitialSupply, handleChangeReserveInitialSupply,
-  resetToDefault, setAdminConfigPage,
-  buttonLock, deployToken
+  adminConfigPage, setAdminConfigPage, resetToDefault,
+  // saleAddress, handleChangeSaleAddress,
+  // reserveSymbol, handleChangeReserveSymbol,
+  // reserveInitialSupply, handleChangeReserveInitialSupply,
+  // , setAdminConfigPage,
+  buttonLock, deploy
   } : adminPanelProps)
 {
 
@@ -116,33 +116,33 @@ export default function AdminPanelView({
               (Page 1/2)
             </Typography>
 
-            <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Name</InputLabel>
-              <Input
-                id="component-helper"
-                value={reserveName}
-                onChange={handleChangeReserveName}
-              />
-            </FormControl>
+            {/*<FormControl variant="standard">*/}
+            {/*  <InputLabel className="input-box-label" htmlFor="component-helper">Sale to Link to</InputLabel>*/}
+            {/*  <Input*/}
+            {/*    id="component-helper"*/}
+            {/*    value={saleAddress}*/}
+            {/*    onChange={handleChangeSaleAddress}*/}
+            {/*  />*/}
+            {/*</FormControl>*/}
 
 
-            <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Symbol</InputLabel>
-              <Input
-                id="component-helper"
-                value={reserveSymbol}
-                onChange={handleChangeReserveSymbol}
-              />
-            </FormControl>
+            {/*<FormControl variant="standard">*/}
+            {/*  <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Symbol</InputLabel>*/}
+            {/*  <Input*/}
+            {/*    id="component-helper"*/}
+            {/*    value={reserveSymbol}*/}
+            {/*    onChange={handleChangeReserveSymbol}*/}
+            {/*  />*/}
+            {/*</FormControl>*/}
 
-            <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Amount a Faucet User will Receive</InputLabel>
-              <Input
-                id="component-helper"
-                value={reserveInitialSupply}
-                onChange={handleChangeReserveInitialSupply}
-              />
-            </FormControl>
+            {/*<FormControl variant="standard">*/}
+            {/*  <InputLabel className="input-box-label" htmlFor="component-helper">Amount a Faucet User will Receive</InputLabel>*/}
+            {/*  <Input*/}
+            {/*    id="component-helper"*/}
+            {/*    value={reserveInitialSupply}*/}
+            {/*    onChange={handleChangeReserveInitialSupply}*/}
+            {/*  />*/}
+            {/*</FormControl>*/}
 
             <div className="buttons-box">
               <Button className="fifty-percent-button" variant="outlined" onClick={() => {resetToDefault()}}>Reset</Button>
@@ -174,7 +174,7 @@ export default function AdminPanelView({
 
             <div className="buttons-box">
               <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>
-              <Button className="fifty-percent-button" disabled={buttonLock} variant="contained" onClick={() => {deployToken()}}>Deploy</Button>
+              <Button className="fifty-percent-button" disabled={buttonLock} variant="contained" onClick={() => {deploy()}}>Deploy</Button>
             </div>
           </>
         )}
