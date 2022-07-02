@@ -79,9 +79,9 @@ function App() {
       (typeof dParam !== 'undefined' && dParam) &&
       (typeof tParam !== 'undefined' && tParam)
     ) {
+      // TODO MIGHT NOT BE THE DEPOSITOR ADDRESS
       console.log(`escrowAddress is ${eParam}, saleAddress is ${sParam}, depositorAddress is ${dParam}, tokenAddress is ${tParam}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
 
-      getDataFromSubgraph();
       setClaimView(true);
       setEscrowAddress(eParam);
       setSaleAddress(sParam);
@@ -90,11 +90,15 @@ function App() {
     }
   },[]);
 
+  // this relies on the above
+  useEffect(() => {
+    getDataFromSubgraph();
+  },[escrowAddress, saleAddress, depositorAddress, tokenAddress, claimView]);
+
   // basic connection to web3 wallet
   useEffect(() => {
     makeWeb3Connection(); // todo test what happens if not signed in
   },[]);
-
 
   /** Handle Form Inputs **/
 
@@ -225,11 +229,14 @@ function App() {
    */
   async function getDataFromSubgraph() {
     try {
+      if (!(claimView && escrowAddress && saleAddress && depositorAddress && tokenAddress)) return;
       // todo check if token address can be one of the query inputs
       // todo DOES IT NEED TIME TO ADD THE TOKEN EVENT TO THE SUBGRAPH?? (NOTHING COMING UP WHEN PASSING IN emissionsErc20Address)
       // todo--question what is the difference between tokenAmount and redeemableSupply?
       console.log('Info: fetching deposit data from Subgraph with endpoint:');
       console.log(SUBGRAPH_ENDPOINT);
+      console.log(`escrowAddress is ${escrowAddress}, saleAddress is ${saleAddress}, depositorAddress is ${depositorAddress}, tokenAddress is ${tokenAddress}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
+
       // depositorAddress are the same in this example as we are using the same wallet for everything
       let subgraphData = await fetch(SUBGRAPH_ENDPOINT, {
         method: 'POST',
@@ -240,7 +247,7 @@ function App() {
           query: `
           query {
             redeemableEscrowDeposits(where: 
-              {iSaleAddress:"${saleAddress}", escrowAddress: "${escrowAddress}", depositorAddress: "${address}", tokenAddress: "${tokenAddress}"}
+              {iSaleAddress:"${saleAddress}", escrowAddress: "${escrowAddress}", depositorAddress: "${depositorAddress}", tokenAddress: "${tokenAddress}"}
             ) {
               id
               token {
