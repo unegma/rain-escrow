@@ -9,6 +9,7 @@
     "@mui/material": "^5.8.0",
     "@react-three/drei": "^9.11.2",
     "@react-three/fiber": "^8.0.18",
+    "@react-three/postprocessing": "^2.4.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",

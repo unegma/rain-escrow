@@ -238,6 +238,7 @@ function App() {
       console.log(`escrowAddress is ${escrowAddress}, saleAddress is ${saleAddress}, depositorAddress is ${depositorAddress}, tokenAddress is ${tokenAddress}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
 
       // depositorAddress are the same in this example as we are using the same wallet for everything
+      // TODO IS 'DEPOSITORADDRESS' ADDRESS IF SOMEONE ELSE IS CLAIMING? SURELY THEY DIDN'T 'DEPOSIT' ANYTHING
       let subgraphData = await fetch(SUBGRAPH_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -347,8 +348,10 @@ function App() {
 
       { claimView && (
         <TokenView
-          // consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
-          // tokenName={tokenName} tokenSymbol={tokenSymbol} modalOpen={modalOpen}
+          consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
+          // tokenName={tokenName}
+          // tokenSymbol={tokenSymbol}
+          modalOpen={modalOpen}
           // tokenInitialSupply={tokenInitialSupply}
           setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
         />

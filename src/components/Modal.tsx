@@ -18,7 +18,9 @@ const style = {
 };
 
 type modalProps = {
-  modalOpen: boolean, setModalOpen: any, reserveSymbol: string, reserveInitialSupply: any, buttonLock: any, tokenAddress: string,
+  // reserveSymbol: string, reserveInitialSupply: any,
+  modalOpen: boolean, setModalOpen: any, buttonLock: any,
+  // tokenAddress: string,
   // initiateBuy: any, buttonLock: boolean, redeemableTokenAddress: string,
   // staticReservePriceOfRedeemable: any,  redeemableSymbol: string, consoleData: string,
   initiateClaim: any,
@@ -27,7 +29,10 @@ type modalProps = {
 }
 
 export default function Modal({
-    modalOpen, setModalOpen, reserveSymbol, reserveInitialSupply, buttonLock, tokenAddress,
+    modalOpen, setModalOpen,
+    // reserveSymbol, reserveInitialSupply,
+    buttonLock,
+    // tokenAddress,
     // initiateBuy, buttonLock, redeemableTokenAddress, staticReservePriceOfRedeemable,
     // redeemableSymbol, consoleData, consoleColor}
     initiateClaim, consoleData, consoleColor
@@ -51,7 +56,7 @@ export default function Modal({
 
 
   const data = {
-    labels: [`Tx1: Claim ${reserveInitialSupply} ${reserveSymbol}`],
+    labels: [`Tx1: Claim Tokens`],
     datasets: [
       {
         label: '',
@@ -91,9 +96,9 @@ export default function Modal({
 
           <br/>
 
-          <Typography className="modalText">These {reserveSymbol} can be used in the <a href="https://rain-shoe-sale.unegma.work" target="_blank">Rain Shoe Sale</a> example!
-            Use: {tokenAddress} as the Reserve Token, and then Users can use {reserveSymbol} to buy Shoe Vouchers.
-          </Typography><br/>
+          {/*<Typography className="modalText">These {reserveSymbol} can be used in the <a href="https://rain-shoe-sale.unegma.work" target="_blank">Rain Shoe Sale</a> example!*/}
+          {/*  Use: {tokenAddress} as the Reserve Token, and then Users can use {reserveSymbol} to buy Shoe Vouchers.*/}
+          {/*</Typography><br/>*/}
 
           { consoleColor === 'red' && (
             <Typography className="modalTextRed">{consoleData}</Typography>
@@ -109,7 +114,7 @@ export default function Modal({
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
 
             {/*{ !staticReservePriceOfRedeemable.includes('e') && (*/}
-              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {reserveInitialSupply} {reserveSymbol}!</Button>
+              <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get Tokens!</Button>
             {/*)}*/}
             {/*{ staticReservePriceOfRedeemable.includes('e')  && (*/}
             {/*  <Button disabled={buttonLock} className="fifty-percent-button" variant="contained">Buy Limit Reached</Button>*/}
