@@ -65,7 +65,7 @@ export default function AdminPanelView({
   };
 
   const data = {
-    labels: ['Tx1: Deploy Token'],
+    labels: ['Tx1: Deploy Token', 'Tx2: Approve for Deposit', 'Tx3: Deposit to Escrow'],
     datasets: [
       {
         label: '',
@@ -74,7 +74,7 @@ export default function AdminPanelView({
       },
       {
         label: '',
-        data: [0.01268265], // todo base it on dynamic matic costs
+        data: [0.01268265, 0.01268265, 0.01268265], // todo base it on dynamic matic costs //TODO THESE ARE NOT CORRECT
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
@@ -119,7 +119,7 @@ export default function AdminPanelView({
             </Typography>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Sale to Link to</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Sale (must be closed) to Link to</InputLabel>
               <Input
                 id="component-helper"
                 value={saleAddress}

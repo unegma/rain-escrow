@@ -4,7 +4,7 @@ import {Canvas} from "@react-three/fiber";
 import React, {Suspense} from "react";
 import {ContactShadows, Environment, OrbitControls} from "@react-three/drei";
 import Faucet from "./Faucet";
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-erc20-faucet.unegma.work/faucet.jpg';
+const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
 
 type tokenViewProps = {
   // reserveName: string, reserveSymbol: string, modalOpen: any,
@@ -26,7 +26,7 @@ export default function TokenView({
 
   return (
     <>
-      {/*<NavBar string={`${reserveName} (${reserveSymbol}) Faucet!`} stringRight={`Click the Faucet!`} />*/}
+      {/*<NavBar string={`${reserveName} (${reserveSymbol}) Faucet!`} stringRight={`Click the Vault!`} />*/}
       <div className="canvasContainer">
         {/*<Modal*/}
         {/*  modalOpen={modalOpen}*/}
