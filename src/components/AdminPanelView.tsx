@@ -30,18 +30,20 @@ const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-exampl
 
 type adminPanelProps = {
   adminConfigPage: number, setAdminConfigPage: any, resetToDefault: any
-  // reserveName: string, handleChangeReserveName: any,
-  // reserveSymbol: string, handleChangeReserveSymbol: any,
-  // reserveInitialSupply: any, handleChangeReserveInitialSupply: any,
+  saleAddress: string, handleChangeSaleAddress: any,
+  tokenName: string, handleChangeTokenName: any,
+  tokenSymbol: string, handleChangeTokenSymbol: any,
+  // tokenInitialSupply: any, handleChangeTokenInitialSupply: any,
   // , setAdminConfigPage: any,
   buttonLock: any, deploy: any
 }
 
 export default function AdminPanelView({
   adminConfigPage, setAdminConfigPage, resetToDefault,
-  // saleAddress, handleChangeSaleAddress,
-  // reserveSymbol, handleChangeReserveSymbol,
-  // reserveInitialSupply, handleChangeReserveInitialSupply,
+  saleAddress, handleChangeSaleAddress,
+  tokenName, handleChangeTokenName,
+  tokenSymbol, handleChangeTokenSymbol,
+  // tokenInitialSupply, handleChangeTokenInitialSupply,
   // , setAdminConfigPage,
   buttonLock, deploy
   } : adminPanelProps)
@@ -116,33 +118,33 @@ export default function AdminPanelView({
               (Page 1/2)
             </Typography>
 
-            {/*<FormControl variant="standard">*/}
-            {/*  <InputLabel className="input-box-label" htmlFor="component-helper">Sale to Link to</InputLabel>*/}
-            {/*  <Input*/}
-            {/*    id="component-helper"*/}
-            {/*    value={saleAddress}*/}
-            {/*    onChange={handleChangeSaleAddress}*/}
-            {/*  />*/}
-            {/*</FormControl>*/}
+            <FormControl variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Sale to Link to</InputLabel>
+              <Input
+                id="component-helper"
+                value={saleAddress}
+                onChange={handleChangeSaleAddress}
+              />
+            </FormControl>
 
 
-            {/*<FormControl variant="standard">*/}
-            {/*  <InputLabel className="input-box-label" htmlFor="component-helper">Reserve Token Symbol</InputLabel>*/}
-            {/*  <Input*/}
-            {/*    id="component-helper"*/}
-            {/*    value={reserveSymbol}*/}
-            {/*    onChange={handleChangeReserveSymbol}*/}
-            {/*  />*/}
-            {/*</FormControl>*/}
+            <FormControl variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Token (to give to Sale participants) Name</InputLabel>
+              <Input
+                id="component-helper"
+                value={tokenName}
+                onChange={handleChangeTokenName}
+              />
+            </FormControl>
 
-            {/*<FormControl variant="standard">*/}
-            {/*  <InputLabel className="input-box-label" htmlFor="component-helper">Amount a Faucet User will Receive</InputLabel>*/}
-            {/*  <Input*/}
-            {/*    id="component-helper"*/}
-            {/*    value={reserveInitialSupply}*/}
-            {/*    onChange={handleChangeReserveInitialSupply}*/}
-            {/*  />*/}
-            {/*</FormControl>*/}
+            <FormControl variant="standard">
+              <InputLabel className="input-box-label" htmlFor="component-helper">Token (to give to Sale participants) Symbol</InputLabel>
+              <Input
+                id="component-helper"
+                value={tokenSymbol}
+                onChange={handleChangeTokenSymbol}
+              />
+            </FormControl>
 
             <div className="buttons-box">
               <Button className="fifty-percent-button" variant="outlined" onClick={() => {resetToDefault()}}>Reset</Button>

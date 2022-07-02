@@ -292,23 +292,23 @@ function App() {
       {/*if nothing is set, show admin panel*/}
       { !claimView && (
         <AdminPanelView
-          //  reserveName={reserveName}
-          // handleChangeReserveName={handleChangeReserveName} reserveSymbol={reserveSymbol}
-          // handleChangeReserveSymbol={handleChangeReserveSymbol}
-          // reserveInitialSupply={reserveInitialSupply}
-          // handleChangeReserveInitialSupply={handleChangeReserveInitialSupply}
+          tokenName={tokenName}
+          handleChangeTokenName={handleChangeTokenName} tokenSymbol={tokenSymbol}
+          handleChangeTokenSymbol={handleChangeTokenSymbol}
+          // tokenInitialSupply={tokenInitialSupply}
+          // handleChangeTokenInitialSupply={handleChangeTokenInitialSupply}
           adminConfigPage={adminConfigPage}
           setAdminConfigPage={setAdminConfigPage}
           resetToDefault={resetToDefault}
           buttonLock={buttonLock} deploy={deploy}
-        />
+          handleChangeSaleAddress={handleChangeSaleAddress} saleAddress={saleAddress}/>
       )}
 
       { claimView && (
         <TokenView
           // consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
-          // reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
-          // reserveInitialSupply={reserveInitialSupply}
+          // tokenName={tokenName} tokenSymbol={tokenSymbol} modalOpen={modalOpen}
+          // tokenInitialSupply={tokenInitialSupply}
           setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
         />
       )}
