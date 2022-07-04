@@ -103,7 +103,7 @@ export default function AdminPanelView({
           Configure Escrow Deposit
         </Typography>
         <Typography color="black" align="center">
-          A Short Demo of Rain Protocol Escrow Usage
+          A Short Demo of Rain Protocol Escrow Usage, to go along with the tutorials at <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
         </Typography>
 
         <Typography color="black" align="center">
