@@ -88,6 +88,13 @@ function App() {
       setDepositorAddress(dParam);
       setTokenAddress(tParam);
     }
+
+    if (
+      (typeof sParam !== 'undefined' && sParam)
+    ) {
+      setSaleAddress(sParam);
+    }
+
   },[]);
 
   // this relies on the above
