@@ -255,7 +255,7 @@ function App() {
           query: `
           query {
             redeemableEscrowDeposits(where: 
-              {iSaleAddress:"${saleAddress}", escrowAddress: "${escrowAddress}", depositorAddress: "${depositorAddress}", tokenAddress: "${tokenAddress}"}
+              {iSaleAddress:"${saleAddress.toLowerCase()}", escrowAddress: "${escrowAddress.toLowerCase()}", depositorAddress: "${depositorAddress.toLowerCase()}", tokenAddress: "${tokenAddress.toLowerCase()}"}
             ) {
               id
               token {
