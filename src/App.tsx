@@ -7,7 +7,7 @@ import * as rainSDK from "rain-sdk";
 import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
 import DeploymentPanelView from "./components/DeploymentPanelView";
-import TokenView from "./components/TokenView";
+import ClaimView from "./components/ClaimView";
 import EscrowSettingsView from "./components/EscrowSettingsView";
 
 declare var process : {
@@ -400,7 +400,7 @@ function App() {
           key={'escrow'}
           path="/:id"
           element={
-            <TokenView
+            <ClaimView
               consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
               // tokenName={tokenName}
               // tokenSymbol={tokenSymbol}

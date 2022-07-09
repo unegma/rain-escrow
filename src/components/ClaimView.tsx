@@ -38,7 +38,7 @@ function Box(props: any) {
 }
 
 // todo rename to escrowView
-export default function TokenView({
+export default function ClaimView({
     modalOpen,
     // reserveName, reserveSymbol, modalOpen, reserveInitialSupply,
     setModalOpen, buttonLock, tokenAddress,
