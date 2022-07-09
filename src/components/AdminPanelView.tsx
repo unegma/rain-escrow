@@ -38,6 +38,7 @@ type adminPanelProps = {
   buttonLock: any, deploy: any
 }
 
+// todo rename from admin panel
 export default function AdminPanelView({
   adminConfigPage, setAdminConfigPage, resetToDefault,
   saleAddress, handleChangeSaleAddress,

@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react';
+import {
+  Route, Routes
+} from "react-router-dom";
 import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
 import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
 import AdminPanelView from "./components/AdminPanelView";
 import TokenView from "./components/TokenView";
+import EscrowSettingsView from "./components/EscrowSettingsView";
 
 declare var process : {
   env: {
@@ -29,7 +33,7 @@ function App() {
   // high level
   const [signer, setSigner] = useState<Signer|undefined>(undefined);
   const [address, setAddress] = useState("");
-  const [escrowAddress, setEscrowAddress] = React.useState("");
+  const [escrowAddress, setEscrowAddress] = React.useState(""); // this is now retrieved from the url
   const [claimComplete, setClaimComplete] = React.useState(false);
   const [consoleData, setConsoleData] = React.useState("");
   const [consoleColor, setConsoleColor] = React.useState('red');
@@ -39,7 +43,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [adminConfigPage, setAdminConfigPage] = useState(0);
   const [claimView, setClaimView] = React.useState(false); // show claim or admin view (if there is a claim address in the url)
-  const [showClaim, setShowClaim] = React.useState(false);
+  // const [showClaim, setShowClaim] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
 
   // all these from .env will be replaced by calls to blockchain within the getTokenData function when faucetView is set to true
@@ -74,7 +78,7 @@ function App() {
     let tParam = queryString.get('t');
 
     if (
-      (typeof eParam !== 'undefined' && eParam) &&
+      // (typeof eParam !== 'undefined' && eParam) &&
       (typeof sParam !== 'undefined' && sParam) &&
       (typeof dParam !== 'undefined' && dParam) &&
       (typeof tParam !== 'undefined' && tParam)
@@ -83,7 +87,7 @@ function App() {
       console.log(`escrowAddress is ${eParam}, saleAddress is ${sParam}, depositorAddress is ${dParam}, tokenAddress is ${tParam}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
 
       setClaimView(true);
-      setEscrowAddress(eParam);
+      // setEscrowAddress(eParam);
       setSaleAddress(sParam);
       setDepositorAddress(dParam);
       setTokenAddress(tParam);
@@ -97,9 +101,13 @@ function App() {
 
   },[]);
 
+  // todo check this section because it is different in all frontends
   // this relies on the above
   useEffect(() => {
-    getDataFromSubgraph();
+    // todo check this still works with new url parameter (NEWLY ADDED, MAY NOT BE NEEDED,, IE THE IF STATEMENT)
+    if (escrowAddress && signer) {
+      getDataFromSubgraph();
+    }
   },[escrowAddress, saleAddress, depositorAddress, tokenAddress, claimView]);
 
   // basic connection to web3 wallet
@@ -133,7 +141,8 @@ function App() {
       console.log(err);
     }
   }
-  //
+
+  // todo remove this, it is all got from the subgraph
   // /**
   //  * Get Token Data from blockchain instead of .env
   //  * THIS WILL ALL BE AS IF THERE IS NO .ENV ON SALE LOAD
@@ -222,7 +231,7 @@ function App() {
       console.info(depositReceipt);
 
       console.log(`Redirecting to Claim`); // todo will probably need to add the amount here as a second parameter
-      window.location.replace(`${window.location.origin}?e=${escrowAddress}&s=${saleAddress}&d=${address}&t=${emissionsERC20Address}`);
+      window.location.replace(`${window.location.origin}/${escrowAddress}?s=${saleAddress}&d=${address}&t=${emissionsERC20Address}`);
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -281,9 +290,12 @@ function App() {
       if (subgraphData === undefined) throw new Error('NO_SUBGRAPH_DATA');
 
       console.log(`Result: data from subgraph with endpoint ${SUBGRAPH_ENDPOINT}:`);
-      setShowClaim(true);
+
       // @ts-ignore
       setSubgraphData(subgraphData);
+
+      // setShowClaim(true); // todo removed this, but test how it works with it (could use it for showing the sale view, but no shoes, or could just hide the whole sale view)_
+      setClaimView(true);
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -339,30 +351,90 @@ function App() {
       )}
 
       {/*if nothing is set, show admin panel*/}
-      { !claimView && (
-        <AdminPanelView
-          tokenName={tokenName}
-          handleChangeTokenName={handleChangeTokenName} tokenSymbol={tokenSymbol}
-          handleChangeTokenSymbol={handleChangeTokenSymbol}
-          // tokenInitialSupply={tokenInitialSupply}
-          // handleChangeTokenInitialSupply={handleChangeTokenInitialSupply}
-          adminConfigPage={adminConfigPage}
-          setAdminConfigPage={setAdminConfigPage}
-          resetToDefault={resetToDefault}
-          buttonLock={buttonLock} deploy={deploy}
-          handleChangeSaleAddress={handleChangeSaleAddress} saleAddress={saleAddress}/>
-      )}
+      {/*{ !claimView && (*/}
+      {/*  <AdminPanelView*/}
+      {/*    tokenName={tokenName}*/}
+      {/*    handleChangeTokenName={handleChangeTokenName} tokenSymbol={tokenSymbol}*/}
+      {/*    handleChangeTokenSymbol={handleChangeTokenSymbol}*/}
+      {/*    // tokenInitialSupply={tokenInitialSupply}*/}
+      {/*    // handleChangeTokenInitialSupply={handleChangeTokenInitialSupply}*/}
+      {/*    adminConfigPage={adminConfigPage}*/}
+      {/*    setAdminConfigPage={setAdminConfigPage}*/}
+      {/*    resetToDefault={resetToDefault}*/}
+      {/*    buttonLock={buttonLock} deploy={deploy}*/}
+      {/*    handleChangeSaleAddress={handleChangeSaleAddress} saleAddress={saleAddress}/>*/}
+      {/*)}*/}
 
-      { claimView && (
-        <TokenView
-          consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
-          // tokenName={tokenName}
-          // tokenSymbol={tokenSymbol}
-          modalOpen={modalOpen}
-          // tokenInitialSupply={tokenInitialSupply}
-          setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
+      {/*{ claimView && (*/}
+      {/*  <TokenView*/}
+      {/*    consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}*/}
+      {/*    // tokenName={tokenName}*/}
+      {/*    // tokenSymbol={tokenSymbol}*/}
+      {/*    modalOpen={modalOpen}*/}
+      {/*    // tokenInitialSupply={tokenInitialSupply}*/}
+      {/*    setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}*/}
+      {/*  />*/}
+      {/*)}*/}
+
+
+      <Routes>
+        <Route
+          key={'home'}
+          path="/"
+          element={
+            <AdminPanelView
+              tokenName={tokenName}
+              handleChangeTokenName={handleChangeTokenName} tokenSymbol={tokenSymbol}
+              handleChangeTokenSymbol={handleChangeTokenSymbol}
+              // tokenInitialSupply={tokenInitialSupply}
+              // handleChangeTokenInitialSupply={handleChangeTokenInitialSupply}
+              adminConfigPage={adminConfigPage}
+              setAdminConfigPage={setAdminConfigPage}
+              resetToDefault={resetToDefault}
+              buttonLock={buttonLock} deploy={deploy}
+              handleChangeSaleAddress={handleChangeSaleAddress} saleAddress={saleAddress}/>
+          }
         />
-      )}
+
+        <Route
+          key={'escrow'}
+          path="/:id"
+          element={
+            <TokenView
+              consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
+              // tokenName={tokenName}
+              // tokenSymbol={tokenSymbol}
+              modalOpen={modalOpen}
+              // tokenInitialSupply={tokenInitialSupply}
+              setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
+              setEscrowAddress={setEscrowAddress} claimView={claimView}
+            />
+          }
+        />
+
+        <Route
+          key={'escrow-settings'}
+          path="/:id/settings"
+          element={
+            <EscrowSettingsView
+              // consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
+              // reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
+              // reserveInitialSupply={reserveInitialSupply}
+              // setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
+              // setTokenAddress={setTokenAddress} faucetView={faucetView}
+            />
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p className='black'>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
 
     </div>
   );
