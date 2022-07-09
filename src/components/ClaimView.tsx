@@ -48,12 +48,6 @@ export default function ClaimView({
     claimView, setEscrowAddress
   }: tokenViewProps )
 {
-  let { id } = useParams();
-
-  // set token address by url instead of t= (check line 80 onwards works in app.tsx for getting the tokenData)
-  useEffect(() => {
-    setEscrowAddress(id);
-  }, []);
 
   return (
     <>
