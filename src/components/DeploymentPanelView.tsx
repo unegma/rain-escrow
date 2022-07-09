@@ -39,7 +39,7 @@ type adminPanelProps = {
 }
 
 // todo rename from admin panel
-export default function AdminPanelView({
+export default function DeploymentPanelView({
   adminConfigPage, setAdminConfigPage, resetToDefault,
   saleAddress, handleChangeSaleAddress,
   tokenName, handleChangeTokenName,

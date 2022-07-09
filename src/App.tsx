@@ -6,7 +6,7 @@ import {ethers, Signer} from "ethers";
 import * as rainSDK from "rain-sdk";
 import { connect } from "./connect.js"; // a very basic web3 connection implementation
 import {CircularProgress} from "@mui/material";
-import AdminPanelView from "./components/AdminPanelView";
+import DeploymentPanelView from "./components/DeploymentPanelView";
 import TokenView from "./components/TokenView";
 import EscrowSettingsView from "./components/EscrowSettingsView";
 
@@ -382,7 +382,7 @@ function App() {
           key={'home'}
           path="/"
           element={
-            <AdminPanelView
+            <DeploymentPanelView
               tokenName={tokenName}
               handleChangeTokenName={handleChangeTokenName} tokenSymbol={tokenSymbol}
               handleChangeTokenSymbol={handleChangeTokenSymbol}
