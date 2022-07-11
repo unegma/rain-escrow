@@ -13,7 +13,7 @@ import { Selection, Select, EffectComposer, Outline } from '@react-three/postpro
 
 const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
 
-type tokenViewProps = {
+type claimViewProps = {
   modalOpen: any
   // reserveName: string, reserveSymbol: string, modalOpen: any,
   setModalOpen: any,  buttonLock: any, tokenAddress: string,
@@ -46,8 +46,14 @@ export default function ClaimView({
     // initiateBuy, buttonLock, tokenAddress,
     // staticReservePriceOfRedeemable, reserveSymbol, consoleData, consoleColor, redeemableInitialSupply
     claimView, setEscrowAddress
-  }: tokenViewProps )
+  }: claimViewProps )
 {
+
+  let {id}: any = useParams();
+  // set token address by url instead of t= (check line 80 onwards works in app.tsx for getting the tokenData)
+  useEffect(() => {
+    setEscrowAddress(id);
+  }, []);
 
   return (
     <>

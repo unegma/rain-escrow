@@ -8,7 +8,7 @@ import { connect } from "./connect.js"; // a very basic web3 connection implemen
 import {CircularProgress} from "@mui/material";
 import DeploymentPanelView from "./components/DeploymentPanelView";
 import ClaimView from "./components/ClaimView";
-import EscrowSettingsView from "./components/EscrowSettingsView";
+import EscrowDashboardView from "./components/EscrowDashboardView";
 
 declare var process : {
   env: {
@@ -68,12 +68,6 @@ function App() {
   }
 
   /** UseEffects **/
-
-  let {id}: any = useParams();
-  // set token address by url instead of t= (check line 80 onwards works in app.tsx for getting the tokenData)
-  useEffect(() => {
-    setEscrowAddress(id);
-  }, []);
 
   // run once on render and check url parameters
   useEffect(() => {
@@ -419,15 +413,16 @@ function App() {
         />
 
         <Route
-          key={'escrow-settings'}
-          path="/:id/settings"
+          key={'escrow-dashboard'}
+          path="/:id/dashboard"
           element={
-            <EscrowSettingsView
+            <EscrowDashboardView
               // consoleData={consoleData} consoleColor={consoleColor} initiateClaim={initiateClaim}
               // reserveName={reserveName} reserveSymbol={reserveSymbol} modalOpen={modalOpen}
               // reserveInitialSupply={reserveInitialSupply}
               // setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
               // setTokenAddress={setTokenAddress} faucetView={faucetView}
+              setEscrowAddress={setEscrowAddress}
             />
           }
         />
