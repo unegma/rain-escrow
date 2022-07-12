@@ -103,8 +103,9 @@ export default function DeploymentPanelView({
         <Typography variant="h4" component="h2" color="black" align="center">
           Configure Escrow Deposit
         </Typography>
+
         <Typography color="black" align="center">
-          A Short Demo of Rain Protocol Escrow Usage, to go along with the tutorials at <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
+          Rain Protocol Escrow Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
         </Typography>
 
         <Typography color="black" align="center">
