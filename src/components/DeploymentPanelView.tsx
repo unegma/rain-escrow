@@ -85,7 +85,7 @@ export default function DeploymentPanelView({
 
   return (
     <>
-      <NavBar />
+      <NavBar string={`Configure ${tokenSymbol} Escrow`} stringRight={``} />
 
       <Box
         className="admin-form"
@@ -98,7 +98,7 @@ export default function DeploymentPanelView({
       >
 
         <Typography variant="h4" component="h2" color="black" align="center">
-          Configure Escrow Deposit
+          Configure {tokenSymbol} Escrow
         </Typography>
 
         <Typography color="black" align="center">
@@ -106,7 +106,7 @@ export default function DeploymentPanelView({
         </Typography>
 
         <Typography color="black" align="center">
-          This demo can be used for distributing extra tokens to those who participated in a <a href="https://rain-shoe-sale.unegma.work" target="_blank">Rain Sale such as this one</a>
+          <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}`} target="_blank">Participants in this Sale</a> will be able to claim {tokenSymbol}.
         </Typography>
 
         <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
@@ -118,7 +118,7 @@ export default function DeploymentPanelView({
             </Typography>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Sale (must be closed) to Link to</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Address (must be closed)</InputLabel>
               <Input
                 id="component-helper"
                 value={saleAddress}
@@ -128,7 +128,7 @@ export default function DeploymentPanelView({
 
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Token (to give to Sale participants) Name</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Token Name (claimable by Sale participants)</InputLabel>
               <Input
                 id="component-helper"
                 value={tokenName}
@@ -137,7 +137,7 @@ export default function DeploymentPanelView({
             </FormControl>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Token (to give to Sale participants) Symbol</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Token Symbol (claimable by Sale participants)</InputLabel>
               <Input
                 id="component-helper"
                 value={tokenSymbol}
