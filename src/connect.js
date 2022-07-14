@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 const CHAIN_ID = parseInt(process.env.REACT_APP_CHAIN_ID); // Mumbai (Polygon Testnet) Chain ID
-const CHAIN_NAME = parseInt(process.env.REACT_APP_CHAIN_NAME); // Mumbai (Polygon Testnet) Chain ID
+const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 
 /**
  * Very basic connection to Web3 wallet
