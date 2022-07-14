@@ -11,7 +11,7 @@ import Chest from "./Chest";
 type claimViewProps = {
   modalOpen: any
   setModalOpen: any,  buttonLock: any, tokenAddress: string,
-  consoleColor: any, consoleData: any, initiateClaim: any, claimView: any, setEscrowAddress: any
+  consoleColor: any, consoleData: any, initiateClaim: any, claimView: any, setEscrowAddress: any, BASE_URL: string
 }
 
 // todo rename to escrowView
@@ -19,7 +19,7 @@ export default function ClaimView({
     modalOpen,
     setModalOpen, buttonLock,
     consoleData, consoleColor, initiateClaim,
-    claimView, setEscrowAddress
+    claimView, setEscrowAddress, BASE_URL
   }: claimViewProps )
 {
 
@@ -33,7 +33,9 @@ export default function ClaimView({
     <>
       { claimView && (
         <>
-          <NavBar string={`Claim Your Tokens!`} stringRight={`Click the Chest!`} />
+          <NavBar string={`Claim Your Tokens!`} stringRight={`Open the Chest!`} />
+          <p className='deploy-own'><a href={`${BASE_URL}`}>Deploy Your Own</a></p>
+
           <div className="canvasContainer">
             <Modal
               modalOpen={modalOpen}

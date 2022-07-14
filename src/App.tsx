@@ -18,6 +18,7 @@ declare var process : {
     REACT_APP_TOKEN_SYMBOL: string
     REACT_APP_TOKEN_INITIAL_SUPPLY: string
     REACT_APP_TOKEN_ERC20_DECIMALS: string
+    REACT_APP_BASE_URL: string
   }
 }
 
@@ -407,7 +408,7 @@ function App() {
               modalOpen={modalOpen}
               // tokenInitialSupply={tokenInitialSupply}
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
-              setEscrowAddress={setEscrowAddress} claimView={claimView}
+              setEscrowAddress={setEscrowAddress} claimView={claimView} BASE_URL={process.env.REACT_APP_BASE_URL}
             />
           }
         />

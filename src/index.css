@@ -160,3 +160,19 @@ canvas:hover {
 .black {
   color: black;
 }
+
+
+.deploy-own {
+  display: block;
+  position: absolute;
+
+  background-color: black;
+  font-size: 16px;
+  padding: 10px;
+  bottom: 10px;
+  right: 10px;
+}
+
+.deploy-own a {
+  color: white;
+}
