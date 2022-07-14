@@ -25,6 +25,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 
 const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
 
@@ -33,8 +34,6 @@ type adminPanelProps = {
   saleAddress: string, handleChangeSaleAddress: any,
   tokenName: string, handleChangeTokenName: any,
   tokenSymbol: string, handleChangeTokenSymbol: any,
-  // tokenInitialSupply: any, handleChangeTokenInitialSupply: any,
-  // , setAdminConfigPage: any,
   buttonLock: any, deploy: any
 }
 
@@ -44,8 +43,6 @@ export default function DeploymentPanelView({
   saleAddress, handleChangeSaleAddress,
   tokenName, handleChangeTokenName,
   tokenSymbol, handleChangeTokenSymbol,
-  // tokenInitialSupply, handleChangeTokenInitialSupply,
-  // , setAdminConfigPage,
   buttonLock, deploy
   } : adminPanelProps)
 {
@@ -60,7 +57,7 @@ export default function DeploymentPanelView({
       },
       title: {
         display: true,
-        text: 'Upcoming Transaction Costs (Estimated MATIC)',
+        text: 'Upcoming Transaction Cost Ratios (Estimated MATIC Ratios based on costs at: 2022-05-30T15:32:44Z)',
       },
     },
   };
@@ -164,16 +161,11 @@ export default function DeploymentPanelView({
             </Typography>
 
             <Typography color="red">
-              Please make sure you are connected to Mumbai Matic testnet.
+              Please make sure you are connected to the <b className='red'>{CHAIN_NAME}</b> Network.
             </Typography>
 
             <Typography color="black">
-              Ratios and costs based on tests taken around the following time: 2022-06-29T05:50:00Z
-            </Typography>
-
-
-            <Typography color="black">
-              Please be aware, this example does not have strict checking, and so you will not recover the cost of network fees (gas) if a deployment fails.
+              Please be aware, this example does not (currently) have strict checking for all fields, and you will not recover the cost for network fees (gas) if a deployment fails.
             </Typography>
 
             <div className="buttons-box">

@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import {Canvas, useFrame} from "@react-three/fiber";
 import {ContactShadows, Environment, OrbitControls} from "@react-three/drei";
 import Chest from "./Chest";
+const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 
 type claimViewProps = {
   modalOpen: any
@@ -34,7 +35,7 @@ export default function ClaimView({
       { claimView && (
         <>
           <NavBar string={`Claim Your Tokens!`} stringRight={`Open the Chest!`} />
-          <p className='deploy-own'><a href={`${BASE_URL}`}>Deploy Your Own</a></p>
+          <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${BASE_URL}`}>Click Here to Deploy Your Own Sale!</a></p>
 
           <div className="canvasContainer">
             <Modal
