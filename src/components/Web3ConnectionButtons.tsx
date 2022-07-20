@@ -113,9 +113,10 @@ export default function Web3ConnectionButtons({setAddress, setSettingsOpen}: any
               const connected = currentConnector === connector;
               const disabled = !triedEager || !!activatingConnector || connected || !!error;
 
+              let nameLabel;
               // bit of a hacky override
               if (name === 'Metamask') {
-                name = 'Metamask/Browser'
+                nameLabel = 'Metamask/Browser'
               }
 
               return (
@@ -140,7 +141,7 @@ export default function Web3ConnectionButtons({setAddress, setSettingsOpen}: any
                         </span>
                       )}
                     </div>
-                    {name}
+                    {nameLabel}
                   </Button>
                 )
               )
