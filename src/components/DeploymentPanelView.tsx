@@ -85,7 +85,7 @@ export default function DeploymentPanelView({
 
   return (
     <>
-      <NavBar string={`Configure ${tokenSymbol} Escrow`} stringRight={``} />
+      <NavBar string={`Configure ${tokenSymbol} Escrow`} />
 
       <Box
         className="admin-form"

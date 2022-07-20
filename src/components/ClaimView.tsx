@@ -34,7 +34,7 @@ export default function ClaimView({
     <>
       { claimView && (
         <>
-          <NavBar string={`Claim Your Tokens!`} stringRight={`Open the Chest!`} />
+          <NavBar string={`Claim Your Tokens!`} />
           <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${BASE_URL}`}>Click Here to Deploy Your Own Sale!</a></p>
 
           <div className="canvasContainer">

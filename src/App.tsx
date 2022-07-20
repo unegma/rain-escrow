@@ -9,6 +9,8 @@ import {CircularProgress} from "@mui/material";
 import DeploymentPanelView from "./components/DeploymentPanelView";
 import ClaimView from "./components/ClaimView";
 import EscrowDashboardView from "./components/EscrowDashboardView";
+import {useWeb3React} from "@web3-react/core";
+import {Web3Provider} from "@ethersproject/providers";
 
 declare var process : {
   env: {
@@ -31,9 +33,11 @@ function App() {
 
   /** State Config **/
 
+  const context = useWeb3React<Web3Provider>(); // todo check because this web3provider is from ethers
+  const { connector, library, chainId, account, activate, deactivate, active, error }: any = context;
+
   // high level
   const [signer, setSigner] = useState<Signer|undefined>(undefined);
-  const [address, setAddress] = useState("");
   const [escrowAddress, setEscrowAddress] = React.useState(""); // this is now retrieved from the url
   const [claimComplete, setClaimComplete] = React.useState(false);
   const [consoleData, setConsoleData] = React.useState("");
@@ -111,10 +115,15 @@ function App() {
     }
   },[escrowAddress, saleAddress, depositorAddress, tokenAddress, claimView]);
 
-  // basic connection to web3 wallet
+  // // basic connection to web3 wallet
+  // useEffect(() => {
+  //   makeWeb3Connection(); // todo test what happens if not signed in
+  // },[]);
+
   useEffect(() => {
-    makeWeb3Connection(); // todo test what happens if not signed in
-  },[]);
+    setSigner(library?.getSigner());
+    // setAddress(account); // todo check that definitely not needed now
+  }, [library, account]);
 
   /** Handle Form Inputs **/
 
@@ -133,15 +142,15 @@ function App() {
 
   /** Functions **/
 
-  async function makeWeb3Connection() {
-    try {
-      const {signer, address} = await connect(); // get the signer and account address using a very basic connection implementation
-      setSigner(signer);
-      setAddress(address);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function makeWeb3Connection() {
+  //   try {
+  //     const {signer, address} = await connect(); // get the signer and account address using a very basic connection implementation
+  //     setSigner(signer);
+  //     setAddress(address);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   // todo remove this, it is all got from the subgraph
   // /**
@@ -180,7 +189,7 @@ function App() {
       erc20Config: {
         name: tokenName,
         symbol: tokenSymbol,
-        distributor: address, // initialSupply is given to the distributor during the deployment of the emissions contract
+        distributor: account, // initialSupply is given to the distributor during the deployment of the emissions contract
         initialSupply: ethers.utils.parseUnits(process.env.REACT_APP_TOKEN_INITIAL_SUPPLY.toString(), process.env.REACT_APP_TOKEN_ERC20_DECIMALS), // TODO CHECK UNDERSTANDING HOW TO LIMIT CORRECTLY, AND TO WHERE THIS GOES ON DEPLOYING THE CONTRACT (distributor?)
       },
       vmStateConfig: {
@@ -232,7 +241,7 @@ function App() {
       console.info(depositReceipt);
 
       console.log(`Redirecting to Claim`); // todo will probably need to add the amount here as a second parameter
-      window.location.replace(`${window.location.origin}/${escrowAddress}?s=${saleAddress}&d=${address}&t=${emissionsERC20Address}`);
+      window.location.replace(`${window.location.origin}/${escrowAddress}?s=${saleAddress}&d=${account}&t=${emissionsERC20Address}`);
     } catch (err) {
       console.log(err);
       setLoading(false);
