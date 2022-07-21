@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
 import Console from '../various/Console';
+import Warning from "../various/Warning";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -81,6 +82,7 @@ export default function EscrowClaimModal({
           <br/>
 
           <Bar options={options} data={data} /><br/>
+          <Warning /><br/>
           <Console consoleData={consoleData} consoleColor={consoleColor} /><br/>
 
           <div className="buttons-box">

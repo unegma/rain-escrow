@@ -16,6 +16,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import Warning from "../various/Warning";
 
 ChartJS.register(
   CategoryScale,
@@ -26,6 +27,7 @@ ChartJS.register(
   Legend
 );
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
 
@@ -85,7 +87,7 @@ export default function DeploymentPanelView({
 
   return (
     <>
-      <NavBar string={`Configure ${tokenSymbol} Escrow`} />
+      <NavBar string={`Configure Escrow`} />
 
       <Box
         className="admin-form"
@@ -98,20 +100,33 @@ export default function DeploymentPanelView({
       >
 
         <Typography variant="h4" component="h2" color="black" align="center">
-          Configure {tokenSymbol} Escrow
+          Configure Escrow for x
         </Typography>
 
-        <Typography color="black" align="center">
-          Rain Protocol Escrow Demo, tutorials: <a href="https://docs.rainprotocol.xyz">docs.rainprotocol.xyz</a>
-        </Typography>
+        {/*<Typography color="black" align="center">*/}
+        {/*</Typography>*/}
 
-        <Typography color="black" align="center">
-          <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}`} target="_blank">Participants in this Sale</a> will be able to claim {tokenSymbol}.
-        </Typography>
 
-        (<b className='red'>Sale must have closed successfully</b>, <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
+        {/*<img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />*/}
 
-        <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
+
+        { adminConfigPage !== 1 && (
+          <>
+            <>
+              <Typography color="black" align="center">
+                <a href="#" target="_blank">Rain Protocol Escrow Demo Video</a><br/>
+                <a href="https://docs.rainprotocol.xyz">Tutorials at docs.rainprotocol.xyz</a><br/>
+                <a href={`${BASE_URL}/0xF4C1C2AA064d09964A08a7c36199d3f2979FE6fa`} target="_blank">Example Escrow: Shoes Collection (shoeVoucher)</a>
+
+                <br/><br/>
+
+                <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}`} target="_blank">Participants in this Sale</a> will be able to claim tokens configured here.<br/>
+                (<b className='red'>Sale must have closed successfully</b>, <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
+              </Typography>
+            </>
+          </>
+        )}
+
 
         { adminConfigPage === 0 && (
           <>
@@ -162,13 +177,7 @@ export default function DeploymentPanelView({
               (Page 2/2)
             </Typography>
 
-            <Typography color="red">
-              Please make sure you are connected to the <b className='red'>{CHAIN_NAME}</b> Network.
-            </Typography>
-
-            <Typography color="black">
-              Please be aware, this example does not (currently) have strict checking for all fields, and you will not recover the cost for network fees (gas) if a deployment fails.
-            </Typography>
+            <Warning />
 
             <div className="buttons-box">
               <Button className="fifty-percent-button" variant="outlined" onClick={() => {setAdminConfigPage(adminConfigPage-1)}}>Previous</Button>
