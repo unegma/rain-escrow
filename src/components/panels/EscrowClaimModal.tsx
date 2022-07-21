@@ -4,13 +4,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import {Bar} from "react-chartjs-2";
+import Console from '../various/Console';
 
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '30vw',
+  width: '42vw',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -46,7 +47,6 @@ export default function EscrowClaimModal({
     },
   };
 
-
   const data = {
     labels: [`Tx1: Claim Tokens`],
     datasets: [
@@ -79,18 +79,9 @@ export default function EscrowClaimModal({
       >
         <Box component="div" sx={style}>
           <br/>
-          <Bar options={options} data={data} />
-          <br/>
 
-          { consoleColor === 'red' && (
-            <Typography className="modalTextRed">{consoleData}</Typography>
-          )}
-
-          { consoleColor === 'green' && (
-            <Typography className="modalTextGreen">{consoleData}</Typography>
-          )}
-
-          <br/>
+          <Bar options={options} data={data} /><br/>
+          <Console consoleData={consoleData} consoleColor={consoleColor} /><br/>
 
           <div className="buttons-box">
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
