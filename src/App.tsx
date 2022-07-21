@@ -9,7 +9,7 @@ import ClaimView from "./components/panels/ClaimView";
 import EscrowDashboardView from "./components/panels/EscrowDashboardView";
 import {useWeb3React} from "@web3-react/core";
 import {Web3Provider} from "@ethersproject/providers";
-import {getDataFromSubgraph} from "../src/helpers/subgraphCalls";
+import {getDataFromSubgraph, getSaleData} from "../src/helpers/subgraphCalls";
 import {deploy, initiateClaim} from "./helpers/web3Functions";
 
 /**
@@ -34,7 +34,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [adminConfigPage, setAdminConfigPage] = useState(0);
   const [claimView, setClaimView] = React.useState(false); // show claim or admin view (if there is a claim address in the url)
-  // const [showClaim, setShowClaim] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
 
   // all these from .env will be replaced by calls to blockchain within the getTokenData function when faucetView is set to true
@@ -48,6 +47,8 @@ function App() {
   const [tokenAddress, setTokenAddress] = useState("");
   const [depositorAddress, setDepositorAddress] = useState("");
   const [subgraphData, setSubgraphData] = useState(undefined);
+  const [saleName, setSaleName] = useState("");
+  const [saleTokenSymbol, setSaleTokenSymbol] = useState("");
 
   // these must be the same as the above in .env
   function resetToDefault() {
@@ -102,6 +103,10 @@ function App() {
     setSigner(library?.getSigner());
   }, [library, account]);
 
+  useEffect(() => {
+    getSaleData(saleAddress,setSaleName,setSaleTokenSymbol);
+  },[saleAddress]);
+
   /** Handle Form Inputs **/
 
   const handleChangeSaleAddress = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -134,6 +139,7 @@ function App() {
               handleChangeTokenSymbol={handleChangeTokenSymbol} adminConfigPage={adminConfigPage}
               setAdminConfigPage={setAdminConfigPage} resetToDefault={resetToDefault} buttonLock={buttonLock}
               handleChangeSaleAddress={handleChangeSaleAddress} saleAddress={saleAddress}
+              saleTokenSymbol={saleTokenSymbol} saleName={saleName}
               deploy={() => deploy(
                 signer,account,setButtonLock,setLoading,tokenName,tokenSymbol,tokenInitialSupply,tokenDecimals,
                 saleAddress

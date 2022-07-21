@@ -26,17 +26,18 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
+// const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
 
-const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
+// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
 
 type adminPanelProps = {
   adminConfigPage: number, setAdminConfigPage: any, resetToDefault: any
   saleAddress: string, handleChangeSaleAddress: any,
   tokenName: string, handleChangeTokenName: any,
   tokenSymbol: string, handleChangeTokenSymbol: any,
-  buttonLock: any, deploy: any
+  saleTokenSymbol: string, saleName: string, buttonLock: any, deploy: any
 }
 
 // todo rename from admin panel
@@ -44,7 +45,7 @@ export default function DeploymentPanelView({
   adminConfigPage, setAdminConfigPage, resetToDefault,
   saleAddress, handleChangeSaleAddress,
   tokenName, handleChangeTokenName,
-  tokenSymbol, handleChangeTokenSymbol,
+  tokenSymbol, handleChangeTokenSymbol, saleTokenSymbol, saleName,
   buttonLock, deploy
   } : adminPanelProps)
 {
@@ -100,15 +101,10 @@ export default function DeploymentPanelView({
       >
 
         <Typography variant="h4" component="h2" color="black" align="center">
-          Configure Escrow for x
+          Configure Escrow
         </Typography>
 
-        {/*<Typography color="black" align="center">*/}
-        {/*</Typography>*/}
-
-
         {/*<img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />*/}
-
 
         { adminConfigPage !== 1 && (
           <>
@@ -120,8 +116,12 @@ export default function DeploymentPanelView({
 
                 <br/><br/>
 
-                <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}`} target="_blank">Participants in this Sale</a> will be able to claim tokens configured here.<br/>
-                (<b className='red'>Sale must have closed successfully</b>, <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
+                <hr/>
+
+                <a href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">Holders of '{saleTokenSymbol}'</a> will be able to claim new Tokens configured on this panel.<br/>
+                (<b className='red'><a className='red' href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">{saleName} Sale</a> must have closed successfully</b>, <a className='red' href={`${SALE_BASE_URL}/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
+
+                <hr/>
               </Typography>
             </>
           </>
@@ -135,7 +135,7 @@ export default function DeploymentPanelView({
             </Typography>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Address (must be closed)</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Address ({saleName} Sale) <b className="red">(must be closed)</b></InputLabel>
               <Input
                 id="component-helper"
                 value={saleAddress}
@@ -145,7 +145,7 @@ export default function DeploymentPanelView({
 
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Token Name (claimable by Sale participants)</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Token Name</InputLabel>
               <Input
                 id="component-helper"
                 value={tokenName}
@@ -154,7 +154,7 @@ export default function DeploymentPanelView({
             </FormControl>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Token Symbol (claimable by Sale participants)</InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Token Symbol (claimable by {saleTokenSymbol} holders)</InputLabel>
               <Input
                 id="component-helper"
                 value={tokenSymbol}

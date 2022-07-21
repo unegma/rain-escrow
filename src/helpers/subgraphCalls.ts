@@ -64,3 +64,52 @@ export async function getDataFromSubgraph(
     alert('Could not find relevant Data.');
   }
 }
+
+/**
+ * Get the name of the sale to be used in the gui
+ */
+export async function getSaleData(saleAddress: string, setSaleName: any, setSaleTokenSymbol: any) {
+  try {
+    console.log(`calling with saleAddress: ${saleAddress}`)
+    let subgraphData = await fetch(SUBGRAPH_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // todo
+      body: JSON.stringify({
+        query: `
+            query {
+              sale (id: "${saleAddress.toLowerCase()}") {
+                id
+                token {
+                  id
+                  name
+                  symbol
+                }
+              }
+            }
+          `
+      })
+    });
+
+    // the response will then come back as promise, the data of which will need to be accessed as such:
+    subgraphData = await subgraphData.json();
+    console.log(subgraphData);
+
+    // @ts-ignore
+    subgraphData = subgraphData.data.sale; // should only be one here anyway. // todo--question is there potential for 'too quick' to cause it not to exist yet in the subgraph?
+    if (subgraphData === undefined) throw new Error('NO_SUBGRAPH_DATA');
+
+    console.log(`Result: data from subgraph with endpoint ${SUBGRAPH_ENDPOINT}:`);
+    // @ts-ignore
+    setSaleName(subgraphData.token.name);
+    // @ts-ignore
+    setSaleTokenSymbol(subgraphData.token.symbol);
+
+  } catch(err) {
+    console.log(err);
+    setSaleName("");
+    setSaleTokenSymbol("");
+  }
+}
