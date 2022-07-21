@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "../layout/NavBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";

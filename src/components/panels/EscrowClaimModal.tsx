@@ -24,7 +24,7 @@ type modalProps = {
   consoleColor: string
 }
 
-export default function Modal({
+export default function EscrowClaimModal({
     modalOpen, setModalOpen,
     buttonLock,
     initiateClaim, consoleData, consoleColor

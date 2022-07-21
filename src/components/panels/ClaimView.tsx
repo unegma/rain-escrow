@@ -2,17 +2,18 @@ import React, {Suspense, useEffect} from "react";
 import {
   useParams
 } from "react-router-dom";
-import NavBar from "./NavBar";
-import Modal from "./Modal";
-import {Canvas, useFrame} from "@react-three/fiber";
+import NavBar from "../layout/NavBar";
+import EscrowClaimModal from "./EscrowClaimModal";
+import {Canvas} from "@react-three/fiber";
 import {ContactShadows, Environment, OrbitControls} from "@react-three/drei";
-import Chest from "./Chest";
+import Chest from "../3d/Chest";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 type claimViewProps = {
   modalOpen: any
   setModalOpen: any,  buttonLock: any, tokenAddress: string,
-  consoleColor: any, consoleData: any, initiateClaim: any, claimView: any, setEscrowAddress: any, BASE_URL: string
+  consoleColor: any, consoleData: any, initiateClaim: any, claimView: any, setEscrowAddress: any
 }
 
 // todo rename to escrowView
@@ -20,7 +21,7 @@ export default function ClaimView({
     modalOpen,
     setModalOpen, buttonLock,
     consoleData, consoleColor, initiateClaim,
-    claimView, setEscrowAddress, BASE_URL
+    claimView, setEscrowAddress
   }: claimViewProps )
 {
 
@@ -38,7 +39,7 @@ export default function ClaimView({
           <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${BASE_URL}`}>Click Here to Deploy Your Own Sale!</a></p>
 
           <div className="canvasContainer">
-            <Modal
+            <EscrowClaimModal
               modalOpen={modalOpen}
               setModalOpen={setModalOpen}
               buttonLock={buttonLock}
