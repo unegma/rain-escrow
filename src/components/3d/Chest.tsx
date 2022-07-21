@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
-const CHEST_URL = "https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/chest-transformed.glb"
+const CHEST_URL = `${process.env.REACT_APP_CDN_BASE_URL}/chest-transformed.glb`
 
 type GLTFResult = GLTF & {
   nodes: {

@@ -26,11 +26,11 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-// const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
+const CDN_BASE_URL = process.env.REACT_APP_CDN_BASE_URL;
 
-// const displayedImage = 'https://assets.unegma.net/unegma.work/rain-escrow-example.unegma.work/vault.jpg';
+// const displayedImage = `${CDN_BASE_URL}/vault.jpg`;
 
 type adminPanelProps = {
   adminConfigPage: number, setAdminConfigPage: any, resetToDefault: any
@@ -119,7 +119,7 @@ export default function DeploymentPanelView({
                 <hr/>
 
                 <a href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">Holders of '{saleTokenSymbol}'</a> will be able to claim new Tokens configured on this panel.<br/>
-                (<b className='red'><a className='red' href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">{saleName} Sale</a> must have closed successfully</b>, <a className='red' href={`${SALE_BASE_URL}/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
+                (<b className='red'><a className='red' href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">{saleName} Sale</a> must have ended successfully</b>, <a className='red' href={`${SALE_BASE_URL}/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
 
                 <hr/>
               </Typography>
@@ -135,7 +135,7 @@ export default function DeploymentPanelView({
             </Typography>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Address ({saleName} Sale) <b className="red">(must be closed)</b></InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Address ({saleName} Sale) <b className="red">(must have ended successfully)</b></InputLabel>
               <Input
                 id="component-helper"
                 value={saleAddress}
