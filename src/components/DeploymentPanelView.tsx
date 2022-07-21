@@ -109,6 +109,8 @@ export default function DeploymentPanelView({
           <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}`} target="_blank">Participants in this Sale</a> will be able to claim {tokenSymbol}.
         </Typography>
 
+        (<b className='red'>Sale must have closed successfully</b>, <a href={`https://rain-voucher-sale.unegma.work/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
+
         <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
 
         { adminConfigPage === 0 && (
