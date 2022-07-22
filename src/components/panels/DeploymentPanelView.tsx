@@ -44,6 +44,12 @@ const ImageContainer = styled.div`
     display: block;
     position: absolute;
     color: black;
+    font-size: 70%;
+    padding-left: 5%;
+  }
+  
+  .mini {
+    font-size: 50%;
   }
 `
 
@@ -140,7 +146,7 @@ export default function DeploymentPanelView({
 
             <ImageContainer className="display-image">
               <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
-              <p>{tokenSymbol}<br/>Token</p>
+              <p>{tokenSymbol}<br/>Token<br/><span className='mini'>{tokenName}</span></p>
             </ImageContainer>
           </>
         )}
