@@ -7,6 +7,7 @@ import EscrowClaimModal from "./EscrowClaimModal";
 import {Canvas} from "@react-three/fiber";
 import {ContactShadows, Environment, OrbitControls} from "@react-three/drei";
 import Chest from "../3d/Chest";
+import Typography from "@mui/material/Typography";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -63,6 +64,11 @@ export default function ClaimView({
             </Canvas>
 
           </div>
+        </>
+      )}
+      {!claimView && (
+        <>
+          <Typography className="black">Loading..<br/>If this message persists,<br/>Escrow may need to finish indexing<br/>(try again in a few moments)</Typography>
         </>
       )}
     </>
