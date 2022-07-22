@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { Modal as ModalMaterial } from '@mui/material';
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import {Bar} from "react-chartjs-2";
 import Console from '../various/Console';
 import Warning from "../various/Warning";
+import {TransactionsChartClaim} from "../various/TransactionsChartClaim";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -33,43 +32,6 @@ export default function EscrowClaimModal({
     initiateClaim, consoleData, consoleColor
   } : modalProps )
 {
-
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'Upcoming Transaction Cost Ratios (Estimated MATIC Ratios based on costs at: 2022-05-30T15:32:44Z)',
-      },
-    },
-  };
-
-  const data = {
-    labels: [`Tx1: Claim Tokens`],
-    datasets: [
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      },
-      {
-        label: '',
-        data: [0.00927434], // todo base it on dynamic matic costs
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      }
-    ],
-  };
-
   function handleClose() {
     setModalOpen(false)
   }
@@ -83,7 +45,7 @@ export default function EscrowClaimModal({
           <HighlightOffIcon className="closeModalButton" onClick={() => { setModalOpen(false)}}/>
           <br/>
 
-          <Bar options={options} data={data} /><br/>
+          <TransactionsChartClaim /> <br/>
           <Warning /><br/>
           <Console consoleData={consoleData} consoleColor={consoleColor} /><br/>
 

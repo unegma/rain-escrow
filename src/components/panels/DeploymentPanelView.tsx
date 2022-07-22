@@ -6,27 +6,10 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
-import {Bar} from "react-chartjs-2";
 import React from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
 import Warning from "../various/Warning";
+import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
 const CDN_BASE_URL = process.env.REACT_APP_CDN_BASE_URL;
@@ -70,42 +53,6 @@ export default function DeploymentPanelView({
   buttonLock, deploy
   } : adminPanelProps)
 {
-
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'Upcoming Transaction Cost Ratios (Estimated MATIC Ratios based on costs at: 2022-05-30T15:32:44Z)',
-      },
-    },
-  };
-
-  const data = {
-    labels: ['Tx1: Deploy Token', 'Tx2: Approve for Deposit', 'Tx3: Deposit to Escrow'],
-    datasets: [
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      },
-      {
-        label: '',
-        data: [0.01268265, 0.01268265, 0.01268265], // todo base it on dynamic matic costs //TODO THESE ARE NOT CORRECT
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: '',
-        data: [1],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-      }
-    ],
-  };
 
   return (
     <>
@@ -195,7 +142,7 @@ export default function DeploymentPanelView({
 
         { adminConfigPage === 1 && (
           <>
-            <Bar options={options} data={data} />;
+            <TransactionsChartDeploy />
 
             <Typography variant="h5" component="h3" color="black">
               (Page 2/2)
