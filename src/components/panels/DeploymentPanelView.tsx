@@ -30,7 +30,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
 const CDN_BASE_URL = process.env.REACT_APP_CDN_BASE_URL;
 
-// const displayedImage = `${CDN_BASE_URL}/vault.jpg`;
+const displayedImage = `${CDN_BASE_URL}/ticket.png`;
 
 type adminPanelProps = {
   adminConfigPage: number, setAdminConfigPage: any, resetToDefault: any
@@ -104,26 +104,24 @@ export default function DeploymentPanelView({
           Configure Escrow
         </Typography>
 
-        {/*<img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />*/}
-
         { adminConfigPage !== 1 && (
           <>
-            <>
-              <Typography color="black" align="center">
-                <a href="#" target="_blank">Rain Protocol Escrow Demo Video</a><br/>
-                <a href="https://docs.rainprotocol.xyz">Tutorials at docs.rainprotocol.xyz</a><br/>
-                <a href={`${BASE_URL}/0xF4C1C2AA064d09964A08a7c36199d3f2979FE6fa`} target="_blank">Example Escrow: Shoes Collection (shoeVoucher)</a>
+            <Typography color="black" align="center">
+              <a href="#" target="_blank">Rain Protocol Escrow Demo Video</a><br/>
+              <a href="https://docs.rainprotocol.xyz">Tutorials at docs.rainprotocol.xyz</a><br/>
+              <a href={`${BASE_URL}/0xF4C1C2AA064d09964A08a7c36199d3f2979FE6fa`} target="_blank">Example Escrow: Shoes Collection (shoeVoucher)</a>
 
-                <br/><br/>
-              </Typography>
-                <hr/>
-              <Typography color="black" align="center">
-                <a href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">Holders of '{saleTokenSymbol}'</a> will be able to claim new Tokens configured on this panel.<br/>
-                (<b className='red'><a className='red' href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">{saleName} Sale</a> must have ended successfully</b>, <a className='red' href={`${SALE_BASE_URL}/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
+              <br/><br/>
+            </Typography>
+              <hr/>
+            <Typography color="black" align="center">
+              <a href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">Holders of '{saleTokenSymbol}'</a> will be able to claim new Tokens configured on this panel.<br/>
+              (<b className='red'><a className='red' href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">{saleName} Sale</a> must have ended successfully</b>, <a className='red' href={`${SALE_BASE_URL}/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
 
-                <hr/>
-              </Typography>
-            </>
+              <hr/>
+            </Typography>
+
+            <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
           </>
         )}
 
