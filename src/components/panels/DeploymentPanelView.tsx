@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import NavBar from "../layout/NavBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -30,7 +31,21 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
 const CDN_BASE_URL = process.env.REACT_APP_CDN_BASE_URL;
 
-const displayedImage = `${CDN_BASE_URL}/ticket.png`;
+const displayedImage = `${CDN_BASE_URL}/ticket.png?h=1`;
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  position: relative;
+  
+  p {
+    text-align: center;
+    display: block;
+    position: absolute;
+    color: black;
+  }
+`
 
 type adminPanelProps = {
   adminConfigPage: number, setAdminConfigPage: any, resetToDefault: any
@@ -113,15 +128,20 @@ export default function DeploymentPanelView({
 
               <br/><br/>
             </Typography>
-              <hr/>
+
+            <hr/>
+
             <Typography color="black" align="center">
               <a href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">Holders of '{saleTokenSymbol}'</a> will be able to claim new Tokens configured on this panel.<br/>
               (<b className='red'><a className='red' href={`${SALE_BASE_URL}/${saleAddress}`} target="_blank">{saleName} Sale</a> must have ended successfully</b>, <a className='red' href={`${SALE_BASE_URL}/${saleAddress}/dashboard`} target="_blank">see Sale Dashboard</a>).
-
-              <hr/>
             </Typography>
 
-            <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
+            <hr/>
+
+            <ImageContainer className="display-image">
+              <img hidden={!(adminConfigPage !== 1)} className="mainImage" src={displayedImage} alt="#" />
+              <p>{tokenSymbol}<br/>Token</p>
+            </ImageContainer>
           </>
         )}
 
