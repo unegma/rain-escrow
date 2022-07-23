@@ -106,7 +106,7 @@ export default function DeploymentPanelView({
             </Typography>
 
             <FormControl variant="standard">
-              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Address ({saleName} Sale) <b className="red">(must have ended successfully)</b></InputLabel>
+              <InputLabel className="input-box-label" htmlFor="component-helper">Sale Address ({saleName} Sale) <a className='red' href={`${SALE_BASE_URL}/${saleAddress}/dashboard`} target="_blank"><b className="red">(must have ended successfully)</b></a></InputLabel>
               <Input
                 id="component-helper"
                 value={saleAddress}
