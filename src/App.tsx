@@ -116,7 +116,9 @@ function App() {
     setTokenName(event.target.value);
   }
   const handleChangeTokenSymbol = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTokenSymbol(event.target.value);
+    let newTokenSymbol = event.target.value;
+    if (newTokenSymbol.length > 11) { alert("Symbol must be 11 characters or less."); return;}
+    setTokenSymbol(newTokenSymbol);
   }
 
   /** View **/
