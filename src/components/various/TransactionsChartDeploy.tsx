@@ -51,7 +51,7 @@ export function TransactionsChartDeploy() {
   };
 
   const data = {
-    labels: ['Tx1: Deploy Token', 'Tx2: Approve for Deposit', 'Tx3: Deposit to Escrow'],
+    labels: ['Tx1: Deploy New Token', 'Tx2: Approve for Deposit', 'Tx3: Deposit to Escrow'],
     datasets: [
       {
         label: '',
