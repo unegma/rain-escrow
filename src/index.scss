@@ -153,6 +153,15 @@ canvas {
   z-index: 1500;
 }
 
+.the-modal {
+  width: 100vw;
+  .MuiBox-root {
+    @media screen and (min-width: 768px) {
+      width: 42vw;
+    }
+  }
+}
+
 /******* Panels *******/
 
 .closeModalButton {
