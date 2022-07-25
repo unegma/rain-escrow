@@ -9,7 +9,7 @@ import {ContactShadows, Environment, OrbitControls} from "@react-three/drei";
 import Chest from "../3d/Chest";
 import Typography from "@mui/material/Typography";
 const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet) Chain ID
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 
 type claimViewProps = {
   modalOpen: any
@@ -38,6 +38,7 @@ export default function ClaimView({
         <>
           <NavBar string={`Claim Your Tokens!`} />
           <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${window.location.origin}`}>Click Here to Deploy Your Own Sale!</a></p>
+          <p className={`github github--secondview`}><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
 
           <div className="canvasContainer">
             <EscrowClaimModal
