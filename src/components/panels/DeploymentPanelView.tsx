@@ -10,7 +10,7 @@ import React from "react";
 import Warning from "../various/Warning";
 import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
 const CDN_BASE_URL = process.env.REACT_APP_CDN_BASE_URL;
 
@@ -57,6 +57,7 @@ export default function DeploymentPanelView({
   return (
     <>
       <NavBar string={`Configure Escrow`} />
+      <p className={'github github--firstview'}><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
 
       <Box
         className="admin-form"
