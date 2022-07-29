@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import React from "react";
 import Warning from "../various/Warning";
 import {TransactionsChartDeploy} from "../various/TransactionsChartDeploy";
+const ESCROW_ADDRESS = process.env.REACT_APP_ESCROW_ADDRESS;
 
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 const SALE_BASE_URL = process.env.REACT_APP_SALE_BASE_URL;
@@ -78,7 +79,7 @@ export default function DeploymentPanelView({
             <Typography color="black" align="center">
               <a className="bullet" href="#" target="_blank">Rain Protocol Escrow Demo Video</a><br/>
               <a className="bullet" href="https://docs.rainprotocol.xyz">Tutorials at docs.rainprotocol.xyz</a><br/>
-              <a className="bullet" href={`${window.location.origin}/0xF4C1C2AA064d09964A08a7c36199d3f2979FE6fa`} target="_blank">Example Escrow: inStore15PercentOffVoucher (iSV15)</a>
+              <a className="bullet" href={`${window.location.origin}/${ESCROW_ADDRESS}`} target="_blank">Example Escrow: inStore15PercentOffVoucher (iSV15)</a>
 
               <br/><br/>
             </Typography>
