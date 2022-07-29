@@ -90,7 +90,7 @@ export async function deploy(
  */
 export async function initiateClaim(
   signer: any, account: string, setButtonLock: any, setLoading: any, setConsoleData: any, setConsoleColor: any, setClaimComplete: any,
-  tokenAddress: string
+  tokenAddress: string, saleAddress: string
 ) {
   try {
     if (account === "" || typeof account === 'undefined') {
