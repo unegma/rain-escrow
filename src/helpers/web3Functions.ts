@@ -103,7 +103,7 @@ export async function initiateClaim(
     //
     // @ts-ignore
     const redeemableERC20ClaimEscrow = await rainSDK.RedeemableERC20ClaimEscrow.get(saleAddress, tokenAddress, signer);
-
+    console.log(`Subgraph Data:`, subgraphData);
     const withdrawTransaction = await redeemableERC20ClaimEscrow.withdraw(
       // @ts-ignore
       subgraphData.redeemableSupply // each deposit captures the rTKN supply when being submitted on-chain (because the supply of rTKN can change at anytime by holders burning), so when calling withdraw, we need to pass rTKN supply at the time of that specific deposit to be able to perform the withdraw
