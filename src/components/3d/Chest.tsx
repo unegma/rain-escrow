@@ -29,8 +29,7 @@ export default function Chest({ setModalOpen, ...props }: any) {
   const { nodes, materials, animations } = useGLTF(CHEST_URL, 'https://www.gstatic.com/draco/versioned/decoders/1.4.1/') as GLTFResult
   // @ts-ignore
   const { actions } = useAnimations<GLTFActions>(animations, group)
-  // console.log(`Nodes:`, nodes);
-  // console.log(`Materials:`, materials);
+
   function handleClick() {
     // @ts-ignore
     if(actions['Take 001']) {
@@ -45,8 +44,6 @@ export default function Chest({ setModalOpen, ...props }: any) {
       actions['Take 001'].stop();
     }, 1000)
   }
-
-  console.log(nodes)
 
   return (
     <group ref={group} {...props} dispose={null} onClick={() => handleClick()}>
