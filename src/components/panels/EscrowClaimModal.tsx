@@ -29,7 +29,7 @@ type modalProps = {
 }
 
 export default function EscrowClaimModal({
-    modalOpen, setModalOpen,
+    modalOpen, setModalOpen, tokenSymbol,
     buttonLock,
     initiateClaim, consoleData, consoleColor,
   } : modalProps )
