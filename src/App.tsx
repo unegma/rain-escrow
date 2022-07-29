@@ -64,10 +64,9 @@ function App() {
   // run once on render and check url parameters
   useEffect(() => {
     let queryString = new URLSearchParams(window.location.search);
-    let eParam = queryString.get('e');
-    let sParam = queryString.get('s');
-    let dParam = queryString.get('d');
-    let tParam = queryString.get('t');
+    let sParam = queryString.get('s'); // sale address
+    let dParam = queryString.get('d'); // depositor address
+    let tParam = queryString.get('t'); // token address
 
     if (
       (typeof sParam !== 'undefined' && sParam) &&
@@ -75,7 +74,6 @@ function App() {
       (typeof tParam !== 'undefined' && tParam)
     ) {
       // TODO MIGHT NOT BE THE DEPOSITOR ADDRESS
-      console.log(`escrowAddress is ${eParam}, saleAddress is ${sParam}, depositorAddress is ${dParam}, tokenAddress is ${tParam}`) // why logged twice: https://stackoverflow.com/questions/60971185/why-does-create-react-app-initialize-twice
 
       setClaimView(true);
       setSaleAddress(sParam);
