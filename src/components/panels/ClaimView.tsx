@@ -37,7 +37,7 @@ export default function ClaimView({
       { claimView && (
         <>
           <NavBar string={`Claim Your Tokens!`} />
-          <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${window.location.origin}`}>Click Here to Deploy Your Own Sale!</a></p>
+          <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${window.location.origin}`}>Click Here to Deploy Your Own Escrow!</a></p>
           <p className={`github github--secondview`}><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
 
           <div className="canvasContainer">
