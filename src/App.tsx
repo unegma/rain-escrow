@@ -89,7 +89,8 @@ function App() {
   },[]);
 
   useEffect(() => {
-    if (escrowAddress && signer) {
+    if (escrowAddress) {
+      console.log('Getting escrow data:')
       getDataFromSubgraph(
         claimView, escrowAddress, saleAddress, depositorAddress, tokenAddress, setClaimView, setButtonLock, setLoading,
         subgraphData, setSubgraphData
