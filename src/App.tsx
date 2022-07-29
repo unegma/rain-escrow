@@ -66,7 +66,7 @@ function App() {
     let queryString = new URLSearchParams(window.location.search);
     let sParam = queryString.get('s'); // sale address
     let dParam = queryString.get('d'); // depositor address
-    let tParam = queryString.get('t'); // token address
+    let tParam = queryString.get('t'); // token address (the newly deployed one)
 
     if (
       (typeof sParam !== 'undefined' && sParam) &&
