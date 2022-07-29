@@ -159,7 +159,7 @@ function App() {
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
               setEscrowAddress={setEscrowAddress} claimView={claimView}
               initiateClaim={() => initiateClaim(
-                signer, account, setButtonLock,setLoading,setConsoleData,setConsoleColor,setClaimComplete,tokenAddress, saleAddress
+                signer, account, setButtonLock,setLoading,setConsoleData,setConsoleColor,setClaimComplete,tokenAddress, saleAddress, subgraphData
               )}
             />
           }
