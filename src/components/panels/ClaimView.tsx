@@ -12,14 +12,14 @@ const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet)
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 
 type claimViewProps = {
-  modalOpen: any, tokenSymbol: string
+  modalOpen: any, tokenSymbol: string, tokenName: string,
   setModalOpen: any,  buttonLock: any, tokenAddress: string,
   consoleColor: any, consoleData: any, initiateClaim: any, claimView: any, setEscrowAddress: any
 }
 
 // todo rename to escrowView
 export default function ClaimView({
-    modalOpen, tokenSymbol,
+    modalOpen, tokenSymbol, tokenName,
     setModalOpen, buttonLock,
     consoleData, consoleColor, initiateClaim,
     claimView, setEscrowAddress
@@ -36,7 +36,7 @@ export default function ClaimView({
     <>
       { claimView && (
         <>
-          <NavBar string={`Claim Your Tokens!`} />
+          <NavBar string={`Claim ${tokenName}!`} />
           <p className='deploy-own'>Make sure you are connected to the <b className='modalTextRed'>{CHAIN_NAME}</b> Network. <a href={`${window.location.origin}`}>Click Here to Deploy Your Own Escrow!</a></p>
           <p className={`github github--secondview`}><a href={`${GITHUB_LINK}`} target="_blank">(Github Link)</a></p>
 

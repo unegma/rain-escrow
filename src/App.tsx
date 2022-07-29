@@ -156,7 +156,7 @@ function App() {
             <ClaimView
               consoleData={consoleData} consoleColor={consoleColor} modalOpen={modalOpen}
               setModalOpen={setModalOpen} buttonLock={buttonLock} tokenAddress={tokenAddress}
-              setEscrowAddress={setEscrowAddress} claimView={claimView} tokenSymbol={tokenSymbol}
+              setEscrowAddress={setEscrowAddress} claimView={claimView} tokenSymbol={tokenSymbol} tokenName={tokenName}
               initiateClaim={() => initiateClaim(
                 signer, account, setButtonLock,setLoading,setConsoleData,setConsoleColor,setClaimComplete,tokenAddress, saleAddress, subgraphData
               )}

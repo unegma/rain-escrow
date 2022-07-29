@@ -19,9 +19,11 @@ const style = {
 };
 
 type modalProps = {
-  modalOpen: boolean, setModalOpen: any, buttonLock: any,
-  initiateClaim: any,
-  consoleData: string,
+  modalOpen: boolean
+  setModalOpen: any
+  buttonLock: any
+  initiateClaim: any
+  consoleData: string
   consoleColor: string
   tokenSymbol: string
 }
@@ -30,7 +32,6 @@ export default function EscrowClaimModal({
     modalOpen, setModalOpen,
     buttonLock,
     initiateClaim, consoleData, consoleColor,
-    tokenSymbol
   } : modalProps )
 {
   function handleClose() {
