@@ -61,7 +61,7 @@ export async function getDataFromSubgraph(
     console.log(err);
     setLoading(false);
     setButtonLock(false);
-    alert('Could not find relevant Data.');
+    alert('Could not find relevant Data (Subgraph may still be indexing, please try again in a few minutes).');
   }
 }
 
