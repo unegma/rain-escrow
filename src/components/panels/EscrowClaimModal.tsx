@@ -53,7 +53,7 @@ export default function EscrowClaimModal({
 
           <div className="buttons-box">
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
-            <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {tokenSymbol} Tokens!</Button>
+            <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Claim {tokenSymbol} Tokens!</Button>
           </div>
 
         </Box>
