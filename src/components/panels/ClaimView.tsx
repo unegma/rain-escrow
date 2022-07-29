@@ -12,14 +12,14 @@ const CHAIN_NAME = process.env.REACT_APP_CHAIN_NAME; // Mumbai (Polygon Testnet)
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_URL;
 
 type claimViewProps = {
-  modalOpen: any
+  modalOpen: any, tokenName: string
   setModalOpen: any,  buttonLock: any, tokenAddress: string,
   consoleColor: any, consoleData: any, initiateClaim: any, claimView: any, setEscrowAddress: any
 }
 
 // todo rename to escrowView
 export default function ClaimView({
-    modalOpen,
+    modalOpen, tokenName,
     setModalOpen, buttonLock,
     consoleData, consoleColor, initiateClaim,
     claimView, setEscrowAddress
@@ -48,6 +48,7 @@ export default function ClaimView({
               consoleData={consoleData}
               consoleColor={consoleColor}
               initiateClaim={initiateClaim}
+              tokenName={tokenName}
             />
 
             <Canvas className="the-canvas" shadows dpr={[1,2 ]} camera={{ position: [0,-20,0], fov: 50 }}>

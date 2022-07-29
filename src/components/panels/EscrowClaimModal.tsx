@@ -23,12 +23,14 @@ type modalProps = {
   initiateClaim: any,
   consoleData: string,
   consoleColor: string
+  tokenName: string
 }
 
 export default function EscrowClaimModal({
     modalOpen, setModalOpen,
     buttonLock,
-    initiateClaim, consoleData, consoleColor
+    initiateClaim, consoleData, consoleColor,
+    tokenName
   } : modalProps )
 {
   function handleClose() {
@@ -51,7 +53,7 @@ export default function EscrowClaimModal({
 
           <div className="buttons-box">
             <Button disabled={buttonLock} className="fifty-percent-button" variant="outlined" onClick={() => {setModalOpen(false)}}>Close</Button>
-            <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get Tokens!</Button>
+            <Button disabled={buttonLock} className="fifty-percent-button" variant="contained" onClick={initiateClaim}>Get {tokenName} Tokens!</Button>
           </div>
 
         </Box>
