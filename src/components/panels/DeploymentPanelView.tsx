@@ -77,7 +77,7 @@ export default function DeploymentPanelView({
         { adminConfigPage !== 1 && (
           <>
             <Typography color="black" align="center">
-              <a className="bullet" href="#" target="_blank">Rain Protocol Escrow Demo Video</a><br/>
+              <a className="bullet" href="https://youtu.be/4aIbUDuW9CM" target="_blank">Rain Protocol Examples Intro Video</a><br/>
               <a className="bullet" href="https://docs.rainprotocol.xyz">Docs at: docs.rainprotocol.xyz</a><br/>
               <a className="bullet" href={`${ESCROW_EXAMPLE}`} target="_blank">Example Escrow: inStore15PercentOffVoucher (iSV15)</a>
 
