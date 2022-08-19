@@ -104,13 +104,20 @@ canvas {
 }
 
 .web3connectButton {
-  background-color: green !important;
   color: white !important;
   border: none !important;
 
   &:hover {
     opacity: 0.8 !important;
   }
+}
+
+.connectButton {
+  background-color: red !important;
+}
+
+.disconnectButton {
+  background-color: green !important;
 }
 
 .deploy-own {
