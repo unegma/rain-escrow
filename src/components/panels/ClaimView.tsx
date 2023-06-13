@@ -57,7 +57,7 @@ export default function ClaimView({
               <spotLight position={[-5, 5, -1.5]} angle={0.03} penumbra={1} intensity={4} castShadow shadow-mapSize={[1024, 1024]} />
               <spotLight position={[5, 5, -5]} angle={0.3} penumbra={1} intensity={4} castShadow={true} shadow-mapSize={[256, 256]} color="#ffffc0" />
               <Suspense fallback={null}>
-                <Environment preset="studio" />
+                <Environment files="https://assets.unegma.net/shared/threejs-environments/studio.hdr" />
                 <Chest scale={0.02} position={[0,0,-3]} rotation={[0.2, 0, 1.2]} setModalOpen={setModalOpen} />
                 <ContactShadows frames={1} rotation-x={[Math.PI / 2]} position={[0, -0.33, 0]} far={0.4} width={2} height={2} blur={4} />
               </Suspense>
